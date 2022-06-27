@@ -11,17 +11,13 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = '(hbnb) '
 
-    def do_test(self, line):
-        print("testing testing")
-
     def do_EOF(self, line):
+        """quits the intepreter"""
         return True
 
     def do_quit(self, line):
+        """Quit command to exit the program"""
         return self.do_EOF
-
-    def help_quit(self):
-        pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
