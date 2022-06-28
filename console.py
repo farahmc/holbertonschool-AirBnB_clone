@@ -42,7 +42,27 @@ class HBNBCommand(cmd.Cmd):
         print(new_obj.id)
 
     def show(self, line):
-        pass
+        """
+        prints the string repr of an instance based
+        on class name and id
+        """
+        if not line:
+            print("** class name missing **")
+            return
+
+        args = line.split()
+
+        if args[0] not in HBNBCommand.classes_list:
+            print("** class doesn't exist **")
+
+        if len(args) < 2:
+            print("** instance id missing **")
+
+        cls_name = globals()[args[0]]
+        id_check = int(args[1])
+
+        print(cls_name)
+        print(id_check)
 
     def destroy(self, line):
         pass
