@@ -11,6 +11,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+from models.engine.file_storage import FileStorage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -33,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         """
         Creates a new instance of specified class and prints
-        object's unique id
+        instance's unique id
         """
         if not line:
             print("** class name missing **")
@@ -62,15 +63,21 @@ class HBNBCommand(cmd.Cmd):
 
         if args[0] not in HBNBCommand.classes_list:
             print("** class doesn't exist **")
+            return
 
         if len(args) < 2:
             print("** instance id missing **")
+            return
 
-        cls_name = globals()[args[0]]
-        id_check = args[1]
-        print(cls_name)
-        print(id_check)
+        obj_key = args[0] + "." + args[1]
+        storage = FileStorage()
+        all_objs = storage.all()
 
+        for key, value in all_objs.items():
+            if key == obj_key:
+                print(value)
+                return
+        print("** no instance found **")
 
     def destroy(self, line):
         pass
