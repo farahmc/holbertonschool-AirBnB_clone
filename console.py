@@ -113,8 +113,23 @@ class HBNBCommand(cmd.Cmd):
 
         print("** no instance found **")
 
-    def all(self, line):
-        pass
+    def do_all(self, line):
+        """
+        prints, as a list of strings, the string repr of all instances
+        or all instances of a certain class if provided
+        """
+        objs_list = []
+        storage = FileStorage()
+        all_objs = storage.all()
+
+        if not line:
+            for key, value in all_objs.items():
+                objs_list.append(str(value))
+            print(objs_list)
+            return
+        else:
+            args = line.split()
+            print("not sure yet")
 
     def update(self, line):
         pass
