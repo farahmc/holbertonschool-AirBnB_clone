@@ -4,7 +4,7 @@ Write a class BaseModel that defines all common attributes/methods for other cla
 """
 import uuid
 from datetime import datetime
-import models
+from models import storage
 
 class BaseModel:
     """class BaseModel"""
