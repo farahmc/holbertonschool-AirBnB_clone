@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import json
 from models.base_model import BaseModel
+from models.user import User
 """
 class FileStorage that serializes instances to a JSON file and deserializes JSON file to instances
 """
@@ -33,7 +34,10 @@ class FileStorage:
     def reload(self):
         """deserializes the JSON file to __objects"""
         data_dict = {}
-        classes = {"BaseModel" : BaseModel}
+        classes = {
+            "BaseModel" : BaseModel,
+            "User": User
+        }
         try:
             with open(self.__file_path, 'r') as f:
                 data_dict = json.load(f)
