@@ -24,17 +24,21 @@ class HBNBCommand(cmd.Cmd):
                     "Amenity", "Place", "Review"]
 
     def do_EOF(self, line):
-        """quits the intepreter"""
+        """
+        quits the intepreter
+        """
         print()
         return True
 
     def do_quit(self, line):
-        """Quit command to exit the program"""
+        """
+        Quit command to exit the program
+        """
         return self.do_EOF
 
     def do_create(self, line):
         """
-        Creates a new instance of specified class and prints
+        Creates a new instance of a specified class and prints
         instance's unique id
         """
         if not line:
@@ -83,7 +87,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, line):
         """
         deletes an instance of a class based on class name and id
-        save changes to json file
+        saves changes to json file
         """
         if not line:
             print("** class name missing **")
@@ -116,20 +120,32 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         """
         prints, as a list of strings, the string repr of all instances
-        or all instances of a certain class if provided
+        in storage, or all instances of a certain class, if provided
         """
         objs_list = []
         storage = FileStorage()
         all_objs = storage.all()
+        check = False
 
         if not line:
             for key, value in all_objs.items():
                 objs_list.append(str(value))
+
             print(objs_list)
             return
         else:
             args = line.split()
-            print("not sure yet")
+
+            for key, value in all_objs.items():
+                test_obj_type = key.split(".")
+                if test_obj_type[0] == args[0]:
+                    objs_list.append(str(value))
+                    check = True
+
+            if check:
+                print(objs_list)
+            else:
+                print("** class doesn't exist **")
 
     def update(self, line):
         pass
