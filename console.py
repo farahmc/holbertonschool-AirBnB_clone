@@ -5,6 +5,13 @@ The entry point for the command intepreter
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -12,10 +19,11 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = '(hbnb) '
     classes_list = ["BaseModel", "User", "State", "City",
-                  "Amenity", "Place", "Review"]
+                    "Amenity", "Place", "Review"]
 
     def do_EOF(self, line):
         """quits the intepreter"""
+        print()
         return True
 
     def do_quit(self, line):
@@ -37,11 +45,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
-        cls_name = globals()[args[0]]
-        new_obj = cls_name()
+        new_obj = globals()[args[0]]()
+        new_obj.save()
         print(new_obj.id)
 
-    def show(self, line):
+    def do_show(self, line):
         """
         prints the string repr of an instance based
         on class name and id
@@ -59,10 +67,10 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
 
         cls_name = globals()[args[0]]
-        id_check = int(args[1])
-
+        id_check = args[1]
         print(cls_name)
         print(id_check)
+
 
     def destroy(self, line):
         pass
@@ -72,6 +80,7 @@ class HBNBCommand(cmd.Cmd):
 
     def update(self, line):
         pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop(intro="Python stinks")
