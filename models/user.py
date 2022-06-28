@@ -8,10 +8,10 @@ class User(BaseModel):
     Class User that imports from BaseModel
 
     Attributes:
-    email: string - empty string
-    password: string - empty string
-    first_name: string - empty string
-    last_name: string - empty string
+    email: email of User
+    password: password of User
+    first_name: first name of User
+    last_name: last name of User
     """
     email = ""
     password = ""
