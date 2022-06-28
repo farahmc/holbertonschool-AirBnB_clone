@@ -11,7 +11,8 @@ class HBNBCommand(cmd.Cmd):
     an interpreter class inheriting from cmd
     """
     prompt = '(hbnb) '
-    class_list = ["BaseModel"]
+    classes_list = ["BaseModel", "User", "State", "City",
+                  "Amenity", "Place", "Review"]
 
     def do_EOF(self, line):
         """quits the intepreter"""
@@ -22,15 +23,35 @@ class HBNBCommand(cmd.Cmd):
         return self.do_EOF
 
     def do_create(self, line):
-        """creates a new instance"""
-        if len(line) == 0:
+        """
+        Creates a new instance of specified class and prints
+        object's unique id
+        """
+        if not line:
             print("** class name missing **")
             return
-        if line not in cls.class_list:
+
+        args = line.split()
+
+        if args[0] not in HBNBCommand.classes_list:
             print("** class doesn't exist **")
             return
-        new_obj = line[0]()
+
+        cls_name = globals()[args[0]]
+        new_obj = cls_name()
         print(new_obj.id)
+
+    def show(self, line):
+        pass
+
+    def destroy(self, line):
+        pass
+
+    def all(self, line):
+        pass
+
+    def update(self, line):
+        pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop(intro="Python stinks")
