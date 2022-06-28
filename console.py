@@ -12,6 +12,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 from models.engine.file_storage import FileStorage
+import copy
 
 
 class HBNBCommand(cmd.Cmd):
@@ -79,8 +80,38 @@ class HBNBCommand(cmd.Cmd):
                 return
         print("** no instance found **")
 
-    def destroy(self, line):
-        pass
+    def do_destroy(self, line):
+        """
+        deletes an instance of a class based on class name and id
+        save changes to json file
+        """
+        if not line:
+            print("** class name missing **")
+            return
+
+        args = line.split()
+
+        if args[0] not in HBNBCommand.classes_list:
+            print("** class doesn't exist **")
+            return
+
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+
+        obj_key = args[0] + "." + args[1]
+        storage = FileStorage()
+        all_objs = storage.all()
+
+        for key, value in all_objs.items():
+            if key == obj_key:
+                del all_objs[key]
+                print(all_objs)
+                storage.__objects = copy.deepcopy(all_objs)
+                storage.save()
+                return
+
+        print("** no instance found **")
 
     def all(self, line):
         pass
