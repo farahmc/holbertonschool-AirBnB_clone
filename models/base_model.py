@@ -39,8 +39,11 @@ class BaseModel:
         """
         Return a dictionary containing all key/values of __dict__
         """
-        ret_dict = self.__dict__.copy()
-        ret_dict['created_at'] = datetime.isoformat(ret_dict['created_at'])
-        ret_dict['updated_at'] = datetime.isoformat(ret_dict['updated_at'])
-        ret_dict['__class__'] = self.__class__.__name__
-        return ret_dict
+        dic = {}
+        dic["__class__"] = self.__class__.__name__
+        for k, v in self.__dict__.items():
+            if isinstance(v, datetime):
+                dic[k] = v.isoformat()
+            else:
+                dic[k] = v
+        return dic
