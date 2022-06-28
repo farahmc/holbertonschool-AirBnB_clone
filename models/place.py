@@ -8,26 +8,26 @@ class Place(BaseModel):
     Class Place that imports from BaseModel
 
     Attributes:
-    city_id: string - empty string: it will be the City.id
-    user_id: string - empty string: it will be the User.id
-    name: string - empty string
-    description: string - empty string
-    number_rooms: integer - 0
-    number_bathrooms: integer - 0
-    max_guest: integer - 0
-    price_by_night: integer - 0
-    latitude: float - 0.0
-    longitude: float - 0.0
-    amenity_ids: list of string - empty list: it will be the list of Amenity.id later
+    city_id: string - City id
+    user_id: string - User id
+    name: name of Place
+    description: description of Place
+    number_rooms: number of rooms in Place
+    number_bathrooms: number of bathrooms in Place
+    max_guest: maximum number of guests in Place
+    price_by_night: price by night of Place
+    latitude: latitude of Place
+    longitude: longitude of Place
+    amenity_ids: Amenity id
     """
     city_id = ""
     user_id = ""
     name = ""
     description = ""
-    number_rooms = int(0)
-    number_bathrooms = int(0)
-    max_guest = int(0)
-    price_by_night = int(0)
-    latitude = float(0.0)
-    longitude = float(0.0)
+    number_rooms = 0
+    number_bathrooms = 0
+    max_guest = 0
+    price_by_night = 0
+    latitude = 0.0
+    longitude = 0.0
     amenity_ids = []
