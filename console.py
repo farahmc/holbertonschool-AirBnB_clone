@@ -147,7 +147,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
-    def update(self, line):
+    def do_update(self, line):
         pass
 
 
