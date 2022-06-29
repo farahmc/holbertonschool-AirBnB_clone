@@ -12,7 +12,6 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 from models.engine.file_storage import FileStorage
-import copy
 
 
 class HBNBCommand(cmd.Cmd):
@@ -113,8 +112,7 @@ class HBNBCommand(cmd.Cmd):
         for key, value in all_objs.items():
             if key == obj_key:
                 del all_objs[key]
-                print(all_objs)
-                storage.__objects = copy.deepcopy(all_objs)
+                storage.__objects = all_objs
                 storage.save()
                 return
 
@@ -150,7 +148,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
-    def update(self, line):
+    def do_update(self, line):
         """
         updates or adds an attribute to an instance of a class
         instance is identified by class name and id
@@ -162,11 +160,13 @@ class HBNBCommand(cmd.Cmd):
 
         args = line.split()
 
-        if args[0] not in classes_list:
+        if args[0] not in HBNBCommand.classes_list:
             print("** class doesn't exist **")
+            return
 
         if len(args) < 2:
             print("** instance id missing **")
+            return
 
         obj_key = args[0] + "." + args[1]
         storage = FileStorage()
@@ -189,7 +189,14 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
 
-        
+        if args[2] in HBNBCommand.int_attrs:
+            setattr(instance_found, args[2], int(args[3]))
+        elif args[2] in HBNBCommand.float_attrs:
+            setattr(instance_found, args[2], float(args[3]))
+        else:
+            setattr(instance_found, args[2], args[3])
+
+        instance_found.save()
 
 
 if __name__ == '__main__':
