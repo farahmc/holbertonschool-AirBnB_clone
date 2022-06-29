@@ -81,6 +81,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn("city", base1.to_dict())
         self.assertIn("state", base1.to_dict())
 
+    def test_to_dict_wrong_arg(self):
+        """ add an undefined arg """
+        base1 = BaseModel()
+        with self.assertRaises(NameError):
+            base1.to_dict(hello)
+
 
 if __name__ == "__main__":
     unittest.main()
