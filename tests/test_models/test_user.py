@@ -5,6 +5,7 @@ from models.user import User
 from datetime import datetime
 from time import sleep
 
+
 class TestUser(unittest.TestCase):
     """ Instantiation of User """
 
@@ -100,6 +101,7 @@ class TestUser(unittest.TestCase):
         user1 = User()
         with self.assertRaises(NameError):
             user1.to_dict(hello)
+
 
 if __name__ == "__main__":
     unittest.main()
