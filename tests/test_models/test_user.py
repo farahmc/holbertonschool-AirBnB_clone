@@ -31,20 +31,28 @@ class TestUser(unittest.TestCase):
         self.assertNotEqual(user1.id, user2.id)
 
     def test_email(self):
-        """ Happy pass email is string """
+        """ Happy pass email """
+        user1 = User()
         self.assertEqual(str, type(User.email))
+        self.assertTrue(hasattr(user1, "email"))
 
     def test_password(self):
-        """ Happy pass password is string """
+        """ Happy pass password """
+        user1 = User()
         self.assertEqual(str, type(User.password))
+        self.assertTrue(hasattr(user1, "password"))
 
     def test_first_name(self):
-        """ Happy pass first name is string """
+        """ Happy pass first name """
+        user1 = User()
         self.assertEqual(str, type(User.first_name))
+        self.assertTrue(hasattr(user1, "first_name"))
 
     def test_last_name(self):
-        """ Happy pass last name is string """
+        """ Happy pass last name """
+        user1 = User()
         self.assertEqual(str, type(User.last_name))
+        self.assertTrue(hasattr(user1, "last_name"))
 
     def test_instantiate_kwargs(self):
         """ Single instantiate with kwargs """
@@ -89,7 +97,7 @@ class TestUser(unittest.TestCase):
 
     def test_to_dict_wrong_arg(self):
         """ add an undefined arg """
-        base1 = User()
+        user1 = User()
         with self.assertRaises(NameError):
             user1.to_dict(hello)
 
