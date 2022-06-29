@@ -39,7 +39,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(type(base1.created_at), datetime)
         self.assertEqual(type(base1.updated_at), datetime)
 
-
     def test_instantiate_kwargs(self):
         """ Single instantiate with kwargs """
         dt = datetime.today()
@@ -54,7 +53,6 @@ class TestBaseModel(unittest.TestCase):
         """ ___str__ method is string """
         base1 = BaseModel()
         self.assertEqual(type(str(base1)), str)
-
 
     def test_instantiate_arg(self):
         """ invalid arg when instantiating """
@@ -82,6 +80,7 @@ class TestBaseModel(unittest.TestCase):
         base1.state = "California"
         self.assertIn("city", base1.to_dict())
         self.assertIn("state", base1.to_dict())
+
 
 if __name__ == "__main__":
     unittest.main()
