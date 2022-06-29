@@ -78,3 +78,7 @@ class TestState(unittest.TestCase):
         melbourne = City()
         self.assertTrue(dict, type(melbourne.to_dict))
         self.assertEqual('to_dict' in dir(melbourne), True)
+
+
+if __name__ == "__main__":
+    unittest.main()
