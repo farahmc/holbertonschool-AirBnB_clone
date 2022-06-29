@@ -12,7 +12,6 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 from models.engine.file_storage import FileStorage
-import copy
 
 
 class HBNBCommand(cmd.Cmd):
@@ -22,6 +21,9 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     classes_list = ["BaseModel", "User", "State", "City",
                     "Amenity", "Place", "Review"]
+    int_attrs = ["number_rooms", "number_bathrooms", "max_guest",
+                 "price_by_night"]
+    float_attrs = ["latitude", "longitude"]
 
     def do_EOF(self, line):
         """
@@ -110,8 +112,7 @@ class HBNBCommand(cmd.Cmd):
         for key, value in all_objs.items():
             if key == obj_key:
                 del all_objs[key]
-                print(all_objs)
-                storage.__objects = copy.deepcopy(all_objs)
+                storage.__objects = all_objs
                 storage.save()
                 return
 
@@ -148,7 +149,54 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def do_update(self, line):
-        pass
+        """
+        updates or adds an attribute to an instance of a class
+        instance is identified by class name and id
+        only one attribute and value can be updated per call
+        """
+        if not line:
+            print("** class name missing **")
+            return
+
+        args = line.split()
+
+        if args[0] not in HBNBCommand.classes_list:
+            print("** class doesn't exist **")
+            return
+
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+
+        obj_key = args[0] + "." + args[1]
+        storage = FileStorage()
+        all_objs = storage.all()
+        instance_found = False
+
+        for key, value in all_objs.items():
+            if key == obj_key:
+                instance_found = value
+
+        if not instance_found:
+            print("** no instance found **")
+            return
+
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return
+
+        if len(args) < 4:
+            print("** value missing **")
+            return
+
+        if args[2] in HBNBCommand.int_attrs:
+            setattr(instance_found, args[2], int(args[3]))
+        elif args[2] in HBNBCommand.float_attrs:
+            setattr(instance_found, args[2], float(args[3]))
+        else:
+            setattr(instance_found, args[2], args[3])
+
+        instance_found.save()
 
 
 if __name__ == '__main__':
