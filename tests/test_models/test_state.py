@@ -74,3 +74,7 @@ class TestState(unittest.TestCase):
         Victoria = State()
         self.assertTrue(dict, type(Victoria.to_dict))
         self.assertEqual('to_dict' in dir(Victoria), True)
+
+
+if __name__ == "__main__":
+    unittest.main()
