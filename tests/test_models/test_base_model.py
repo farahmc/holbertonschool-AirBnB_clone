@@ -4,10 +4,11 @@
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
+from time import sleep
 
 
 class TestBaseModel(unittest.TestCase):
-    """ Unit tests for instantiating BaseModel """
+    """ Unit tests for BaseModel """
 
     def test_instantiate(self):
         """ Happy pass instantiate"""
@@ -25,12 +26,6 @@ class TestBaseModel(unittest.TestCase):
         """ Happy pass updated at datetime """
         self.assertEqual(datetime, type(BaseModel().updated_at))
 
-    def test_str_out(self):
-        """ Happy pass string representation """
-        base1 = BaseModel()
-        str_out = f"[{base1.__class__.__name__}] ({base1.id} {base1.__dict__})"
-        self.assertEqual(str_out, str(base1))
-
     def test_uid(self):
         """ UID created at each instantiation """
         base1 = BaseModel()
@@ -43,6 +38,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(type(base1.id), str)
         self.assertEqual(type(base1.created_at), datetime)
         self.assertEqual(type(base1.updated_at), datetime)
+
 
     def test_instantiate_kwargs(self):
         """ Single instantiate with kwargs """
@@ -59,6 +55,33 @@ class TestBaseModel(unittest.TestCase):
         base1 = BaseModel()
         self.assertEqual(type(str(base1)), str)
 
+
+    def test_instantiate_arg(self):
+        """ invalid arg when instantiating """
+        with self.assertRaises(NameError) as e:
+            b1 = BaseModel(hello)
+        self.assertEqual(str(e.exception), "name 'hello' is not defined")
+
+    def test_save(self):
+        """ save method """
+        base1 = BaseModel()
+        sleep(2)
+        update = base1.updated_at
+        base1.save()
+        self.assertNotEqual(update, base1.updated_at)
+
+    def test_to_dict(self):
+        """ Happy pass to_dict method """
+        base1 = BaseModel()
+        self.assertTrue(dict, type(base1.to_dict))
+
+    def test_to_dict_add_attr(self):
+        """ add attribute to dict """
+        base1 = BaseModel()
+        base1.city = "LA"
+        base1.state = "California"
+        self.assertIn("city", base1.to_dict())
+        self.assertIn("state", base1.to_dict())
 
 if __name__ == "__main__":
     unittest.main()
