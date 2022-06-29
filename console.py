@@ -22,6 +22,9 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     classes_list = ["BaseModel", "User", "State", "City",
                     "Amenity", "Place", "Review"]
+    int_attrs = ["number_rooms", "number_bathrooms", "max_guest",
+                 "price_by_night"]
+    float_attrs = ["latitude", "longitude"]
 
     def do_EOF(self, line):
         """
@@ -148,7 +151,45 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def update(self, line):
-        pass
+        """
+        updates or adds an attribute to an instance of a class
+        instance is identified by class name and id
+        only one attribute and value can be updated per call
+        """
+        if not line:
+            print("** class name missing **")
+            return
+
+        args = line.split()
+
+        if args[0] not in classes_list:
+            print("** class doesn't exist **")
+
+        if len(args) < 2:
+            print("** instance id missing **")
+
+        obj_key = args[0] + "." + args[1]
+        storage = FileStorage()
+        all_objs = storage.all()
+        instance_found = False
+
+        for key, value in all_objs.items():
+            if key == obj_key:
+                instance_found = value
+
+        if not instance_found:
+            print("** no instance found **")
+            return
+
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return
+
+        if len(args) < 4:
+            print("** value missing **")
+            return
+
+        
 
 
 if __name__ == '__main__':
