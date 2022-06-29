@@ -8,8 +8,8 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 """
-class FileStorage that serializes instances to a JSON file and deserializes JSON
-file to instances
+class FileStorage that serializes instances to a JSON file
+and deserializes JSON file to instances
 """
 
 
@@ -43,7 +43,7 @@ class FileStorage:
         """deserializes the JSON file to __objects"""
         data_dict = {}
         classes = {
-            "BaseModel" : BaseModel,
+            "BaseModel": BaseModel,
             "User": User,
             "State": State,
             "City": City,
