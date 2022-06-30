@@ -15,6 +15,9 @@ and deserializes JSON file to instances
 
 class FileStorage:
     """
+    Serializes instances to a JSON file and deserializes JSON file to instances
+
+    Attributes:
     __file_path: string - path to the JSON file (ex: file.json)
     __objects: dictionary - empty but will store all objects by <class name>.id
     """
@@ -22,11 +25,15 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        """return dictionary __objects"""
+        """
+        returns the dictionary __objects
+        """
         return self.__objects
 
     def new(self, obj):
-        """sets in __objects the obj with key <obj class name>.id"""
+        """
+        sets in __objects the obj with key <obj class name>.id
+        """
         if obj:
             key = '{}.{}'.format(obj.__class__.__name__, obj.id)
             self.__objects[key] = obj
@@ -40,7 +47,9 @@ class FileStorage:
             json.dump(data, f)
 
     def reload(self):
-        """deserializes the JSON file to __objects"""
+        """
+        deserializes the JSON file to __objects
+        """
         data_dict = {}
         classes = {
             "BaseModel": BaseModel,
