@@ -36,6 +36,10 @@ class HBNBCommand(cmd.Cmd):
 
         return self.do_EOF
 
+    def emptyline(self):
+        """overides parent empty line method"""
+        pass
+
     def do_create(self, line):
         """
         Creates a new instance of a specified class and prints
