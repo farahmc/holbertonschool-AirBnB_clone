@@ -1,6 +1,6 @@
 # hbnb - an AirBnB clone :city_sunrise:
 
-<p align="center" width="100%">
+<p align="center" width="70%">
     <img src="https://github.com/farahmc/holbertonschool-AirBnB_clone/blob/main/hbnb.png">
 </p>
 
