@@ -37,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
         return self.do_EOF
 
     def emptyline(self):
-        """overides parent empty line method"""
+        """overrides parent empty line method"""
         pass
 
     def do_create(self, line):
@@ -199,6 +199,35 @@ class HBNBCommand(cmd.Cmd):
             setattr(instance_found, args[2], args[3])
 
         instance_found.save()
+
+    def precmd(self, line):
+        """
+        overrides parent precmd method to handle alt syntax
+        """
+        if not line:
+            return line
+
+        args = line.split()
+
+        if args[0] in ['EOF', 'quit', 'create', 'all', 'show',
+                       'destroy', 'help', 'update']:
+            return line
+
+        args = args[0].split(".")
+        class_name = args[0]
+
+        if class_name not in HBNBCommand.classes_list:
+            return line
+
+        if len(args) > 1:
+            args = args[1].split('(')
+            command = args[0]
+            obj_id = args[1].split('"')
+            new_line = command + " " + class_name + " "
+            if len(obj_id) > 1:
+                new_line += obj_id[1]
+
+        return new_line
 
 
 if __name__ == '__main__':
