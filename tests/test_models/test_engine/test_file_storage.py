@@ -76,3 +76,37 @@ class TestFileStorage(unittest.TestCase):
         storage.new(jacqueline)
         key = jacqueline.__class__.__name__ + "." + str(jacqueline.id)
         self.assertIsNotNone(all_objs[key])
+
+    def test_create(self):
+        """ happy pass instance creation """
+        all_objs = FileStorage()
+        self.assertTrue(type(all_objs) == FileStorage)
+        self.assertTrue(isinstance(all_objs, FileStorage))
+
+    def test_new(self):
+        """ happy pass new method """
+        all_objs = FileStorage()
+        all_objs.new(BaseModel())
+        self.assertTrue(all_objs.all())
+
+    def test_new_arg(self):
+        """ new method - pass an argument """
+        all_objs = FileStorage()
+        with self.assertRaises(AttributeError):
+            all_objs.new(123)
+
+    def test_save_arg(self):
+        """ save method - pass an argument """
+        all_objs = FileStorage()
+        with self.assertRaises(TypeError):
+            all_objs.save(123)
+
+    def test_reload_arg(self):
+        """ reload method - pass an argument """
+        all_objs = FileStorage()
+        with self.assertRaises(TypeError):
+            all_objs.reload(123)
+
+
+if __name__ == "__main__":
+    unittest.main()
