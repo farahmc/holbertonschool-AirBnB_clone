@@ -5,6 +5,7 @@ from models.place import Place
 from datetime import datetime
 from time import sleep
 
+
 class TestUser(unittest.TestCase):
     """ Unit tests for class Place """
 
@@ -142,6 +143,7 @@ class TestUser(unittest.TestCase):
         place1 = Place()
         with self.assertRaises(NameError):
             place1.to_dict(hello)
+
 
 if __name__ == "__main__":
     unittest.main()
