@@ -44,6 +44,8 @@ $
 ### File Descriptions :floppy_disk:
 - **console.py:** hbnb console
 - *models* directory:
+  - *engine* directory:
+    - **file_storage.py**: serializes instances to a JSON file and deserializes JSON file to instances
   - **amenity.py:** Class *Amenity*. Attributes: *name*.
   - **base_model.py:** Class *BaseModel* which all other classes inherit from. Attributes: *id, created_at, updated_at*.
   - **city.py:** Class *City*. Attributes: *state_id, name*.
@@ -51,8 +53,6 @@ $
   - **review.py:** Class *Review*. Attributes: *place_id, user_id, text*.
   -  **state.py:** Class *State*. Attributes: *name*.
   - **user.py:** Class *User*. Attributes: *email, password, first_name, last_name*.
-  - *engine* directory:
-    - **file_storage.py**: serializes instances to a JSON file and deserializes JSON file to instances
   
  ## Unit Testing :hammer:
  Unit tests are stored in the *tests* directory. To run unit tests, run the following command:
