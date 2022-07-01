@@ -34,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """Quit command to exit the program
         """
-        return self.do_EOF
+        return True
 
     def emptyline(self):
         """overrides parent empty line method
