@@ -66,7 +66,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(dict, type(all_objs))
 
     def test_new(self):
-        """check if it has saved new object into dict"""
+        """check if it has created new object"""
         storage = FileStorage()
         all_objs = storage.all()
         jacqueline = User()
@@ -76,3 +76,50 @@ class TestFileStorage(unittest.TestCase):
         storage.new(jacqueline)
         key = jacqueline.__class__.__name__ + "." + str(jacqueline.id)
         self.assertIsNotNone(all_objs[key])
+
+    def test_save(self):
+        storage = FileStorage()
+        storage.save()
+        self.assertTrue(os.path.exists('file.json'))
+
+    def test_reload(self):
+        storage1 = FileStorage()
+        all_objs = storage1.all()
+        for obj_id in all_objs.keys():
+            obj = all_objs[obj_id]
+        print(obj)
+        self.assertIsNotNone(obj)
+
+    def test_create(self):
+        """ happy pass instance creation """
+        all_objs = FileStorage()
+        self.assertTrue(type(all_objs) == FileStorage)
+        self.assertTrue(isinstance(all_objs, FileStorage))
+
+    def test_new(self):
+        """ happy pass new method """
+        all_objs = FileStorage()
+        all_objs.new(BaseModel())
+        self.assertTrue(all_objs.all())
+
+    def test_new_arg(self):
+        """ new method - pass an argument """
+        all_objs = FileStorage()
+        with self.assertRaises(AttributeError):
+            all_objs.new(123)
+
+    def test_save_arg(self):
+        """ save method - pass an argument """
+        all_objs = FileStorage()
+        with self.assertRaises(TypeError):
+            all_objs.save(123)
+
+    def test_reload_arg(self):
+        """ reload method - pass an argument """
+        all_objs = FileStorage()
+        with self.assertRaises(TypeError):
+            all_objs.reload(123)
+
+
+if __name__ == "__main__":
+    unittest.main()
