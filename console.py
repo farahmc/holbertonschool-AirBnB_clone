@@ -26,18 +26,19 @@ class HBNBCommand(cmd.Cmd):
     float_attrs = ["latitude", "longitude"]
 
     def do_EOF(self, line):
-        """quits the intepreter"""
-
+        """Quit command to exit the program
+        """
         print()
         return True
 
     def do_quit(self, line):
-        """quits the intepreter"""
-
+        """Quit command to exit the program
+        """
         return self.do_EOF
 
     def emptyline(self):
-        """overrides parent empty line method"""
+        """overrides parent empty line method
+        """
         pass
 
     def do_create(self, line):
