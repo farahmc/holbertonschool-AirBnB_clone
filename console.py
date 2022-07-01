@@ -4,6 +4,7 @@ The entry point for the command intepreter
 """
 
 import cmd
+import models
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -26,9 +27,8 @@ class HBNBCommand(cmd.Cmd):
     float_attrs = ["latitude", "longitude"]
 
     def do_EOF(self, line):
-        """Quit command to exit the program
+        """Quits the console when Ctrl D
         """
-        print()
         return True
 
     def do_quit(self, line):
