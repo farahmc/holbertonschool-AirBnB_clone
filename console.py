@@ -201,6 +201,32 @@ class HBNBCommand(cmd.Cmd):
 
         instance_found.save()
 
+    def do_count(self, line):
+        """
+        counts the numbers of stored instances of a class
+        """
+
+        if not line:
+            print("** class name missing **")
+            return
+
+        args = line.split()
+
+        if args[0] not in HBNBCommand.classes_list:
+            print("** class doesn't exist **")
+            return
+
+        storage = FileStorage()
+        stored_objs = storage.all()
+        count = 0
+
+        for key in stored_objs:
+            key = key.split('.')
+            if key[0] == args[0]:
+                count += 1
+
+        print(count)
+
     def precmd(self, line):
         """
         overrides parent precmd method to handle alt syntax
@@ -211,7 +237,7 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
 
         if args[0] in ['EOF', 'quit', 'create', 'all', 'show',
-                       'destroy', 'help', 'update']:
+                       'destroy', 'help', 'update', 'count']:
             return line
 
         args = args[0].split(".")
