@@ -64,6 +64,7 @@ class TestFileStorage(unittest.TestCase):
         all_objs = storage.all()
         self.assertIsNotNone(all_objs)
         self.assertEqual(dict, type(all_objs))
+        self.assertIs(all_objs, storage._FileStorage__objects)
 
     def test_new(self):
         """check if it has created new object"""
