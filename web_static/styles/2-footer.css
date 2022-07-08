@@ -2,7 +2,10 @@ footer {
     position: absolute;
     bottom: 0;
     background-color: #00FF00;
-    line-height: 60px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 60px;
     width: 100%;
     text-align: center;
     vertical-align: middle;
