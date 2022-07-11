@@ -11,5 +11,6 @@ body {
     justify-content: center;
     max-width: 1000px;
     margin: 30px auto;
-    padding: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
