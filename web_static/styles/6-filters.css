@@ -1,5 +1,8 @@
-.filters {
+section {
     display: flex;
+}
+
+.filters {
     background-color: #FFFFFF;
     height: 70px;
     width: 100%;
