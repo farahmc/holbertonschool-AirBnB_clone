@@ -75,12 +75,13 @@ section {
     border-bottom: #DDDDDD 1px solid;
     justify-content: center;
     align-items: center;
-    padding: 0px;
+    padding-top: 5px;
+    padding-bottom: 8px;
     margin: 0px;
 }
 
 .information_text {
-    margin-top: 45px;
+    margin-top: 48px;
 }
 
 .max_guest {
@@ -126,16 +127,18 @@ section {
     padding: 10px;
 }
 
-.article amenities {
+.article .amenities {
     display: flex;
     flex-direction: column;
     margin-top: 40px;
+    margin-bottom: 0px;
     text-align: left;
     width: 100%;
     padding: 0px;
+    height: 120px;
 }
 
-.article amenities h2, .article reviews h2 {
+.article .amenities h2, .article .reviews h2 {
     font-size: 16px;
     font-weight: bold;
     border-bottom: 1px solid #DDDDDD;
@@ -144,13 +147,17 @@ section {
     margin-bottom: 0px;
 }
 
-.article amenities li, .article reviews li {
+.article .amenities li, .article .reviews li {
     list-style-type: none;
     margin-left: -30px;
     margin-bottom: 10px;
 }
 
-.article reviews {
+.article .amenities ul {
+    columns: 2;
+}
+
+.article .reviews {
     display: flex;
     flex-direction: column;
     margin-top: 40px;
@@ -159,13 +166,13 @@ section {
     padding: 0px;
 }
 
-.article reviews h3 {
+.article .reviews h3 {
     font-size: 14px;
     font-weight: bold;
     margin-top: 0px;
 }
 
-.article reviews p {
+.article .reviews p {
     margin-top: -11px;
     font-size: 12px;
 }
