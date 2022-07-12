@@ -47,6 +47,8 @@ Add more information to a 'Place' article:
     - tag: 'div'
     - classname: 'information'
 
+## Advanced Tasks
+
 ### 9. Full details
 Write an HTML page that displays a header, footer, a filters box with dropdown and results. 
 Add more information to a 'Place' article:
