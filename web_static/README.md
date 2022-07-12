@@ -26,9 +26,36 @@ Write an HTML page that displays a header, footer and a filters box.
 
 ### 6. It's (h)over
 Write an HTML page that displays a header, footer and a filters box with dropdown.
+- Update Locations and Amenities filters to display a contextual dropdown when the mouse is on the filter 'div':
+    - tag 'ul'
+    - classname 'popover'
 
 ### 7. Display results
 Write an HTML page that displays a header, footer, a filters box with dropdown and results.
+- Add Places section:
+    - tag: 'section'
+    - classname: 'places'
+    - same level as the filters section, inside '.container'
 
 ### 8. More details
 Write an HTML page that displays a header, a footer, a filter box (dropdown list) and the result of the search.
+Add more information to a 'Place' article:
+- Price by night:
+    - tag: 'div'
+    - classname: 'price_by_night'
+- Information section:
+    - tag: 'div'
+    - classname: 'information'
+
+### 9. Full details
+Write an HTML page that displays a header, footer, a filters box with dropdown and results. 
+Add more information to a 'Place' article:
+- List of Amenities:
+    - tag 'div'
+    - classname 'amenities'
+- List of Reviews:
+    - tag 'div'
+    - classname 'reviews'
+
+### 10. Flex
+Improve the Places section by using Flexible boxes for all Place articles.
